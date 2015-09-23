@@ -25,7 +25,7 @@ if (!pkg.betterScripts[process.argv[2]]) {
 
 console.log('Executing script: ' + process.argv[2] + '\n');
 
-exec(pkg.betterScripts[process.argv[2]], function (error, stdout, stderr) {
+exec(pkg.betterScripts[process.argv[2]], { customFds: [0,1,2] }, function (error, stdout, stderr) {
   process.stderr.write(stderr);
   process.stdout.write(stdout);
   if(error !== null) {
